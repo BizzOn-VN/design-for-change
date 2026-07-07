@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'SVN-Avo';
+    src: url('SVN-Avobold.eot');
+    src: url('SVN-Avobold.eot?#iefix') format('embedded-opentype'),
+        url('SVN-Avobold.woff2') format('woff2'),
+        url('SVN-Avobold.woff') format('woff'),
+        url('SVN-Avobold.ttf') format('truetype'),
+        url('SVN-Avobold.svg#SVN-Avobold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
