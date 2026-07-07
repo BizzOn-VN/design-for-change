@@ -327,6 +327,7 @@ img{
 .md-row .md-col .md-left .content-left ul li{
   list-style: disc;
   margin-bottom: 5px;
+  font-size: calc(5px + 1vw);
 }
 .md-row .md-col-2{
   margin-top: 30px;
@@ -551,7 +552,7 @@ img{
     margin-bottom: 30px;
   }
   .page-main .section-1 .md-text-bot .md-right{
-    width: 80%;
+    width: 84%;
     display: table;
     margin: 0 auto;
     text-align: center;
@@ -563,7 +564,7 @@ img{
     font-size: calc(10px + 1vw);
   }
   .page-main .section-1 .quote-text{
-    text-align: center;
+    
   }
   .page-main .section-4 .content-bot{
     padding: 0px;
@@ -660,5 +661,11 @@ img{
   .section-7 .md-row .md-col .md-left .content-left h6{
     font-size: calc(12px + 1vw);
     text-align: center;
+  }
+  span.md-enter{
+    display: block;
+  }
+  .md-row .md-col .md-left .content-left ul li{
+    font-size: calc(10px + 1vw);
   }
 }
