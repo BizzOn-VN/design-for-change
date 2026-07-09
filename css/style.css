@@ -116,6 +116,7 @@ img{
   width: 25%;
   margin-left: auto;
   animation: btn-contact 0.7s infinite;
+  cursor: pointer;
 }
 @keyframes btn-contact{
   0%,100%{
@@ -710,4 +711,90 @@ img{
   .md-row .md-col .md-left .content-left ul li{
     font-size: calc(10px + 1vw);
   }
+}
+.md-form{
+  margin-bottom: 50px;
+}
+.md-form .md-title h2{
+  color: #FFF;
+}
+.md-form form{
+  width: 60%;
+  display: table;
+  margin: 0 auto;
+  padding: 30px 30px;
+  border-radius: 20px;
+  background: #ff9d00;
+}
+.md-form form label{
+  display: block;
+  color: #FFF;
+  font-family: "Playpen Sans", cursive;
+}
+.md-form form .md-col input{
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 5px 15px;
+  font-family: "Playpen Sans", cursive;
+}
+.md-form form .md-col{
+  margin-bottom: 20px;
+}
+.md-form form input[type="button"]{
+  background: url(../images/btn-4.png) no-repeat center;
+  background-size: contain;
+  border: none;
+  display: table;
+  margin: 0px auto;
+  padding: 10px 0px;
+  width: 35%;
+}
+.md-form p.error{
+  margin-top: 3px;
+  color: #ff0049;
+  font-style: italic;
+  font-size: calc(2px + 1vw);
+  font-family: "Playpen Sans", cursive;
+}
+
+.md-tk{
+    width: 50%;
+  height: 50%;
+  background: #E7EDF9;
+  display: none;
+}
+.md-tk img{
+  width: 20%;
+  display: table;
+  margin: 0 auto 15px auto;
+}
+.md-tk p{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin-bottom: 0px;
+    font-size: calc(10px + 1vw);
+    text-align: center;
+    width: 75%;
+    color: #333;
+}
+@media screen and (max-width: 767px){
+  .md-form form{
+    width: 90%;
+  }
+  .md-form form input[type="button"]{
+    width: 50%;
+  }
+  .md-form form .md-col input{
+    padding: 10px 15px;
+  }
+  .md-form p.error{
+    font-size: calc(8px + 1vw);
+  }
+  .md-tk{
+     width: 90%;
+     height: 40%;
+   }
 }

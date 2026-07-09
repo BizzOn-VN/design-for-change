@@ -55,3 +55,32 @@ window.addEventListener('scroll', () => {
     header.classList.remove('active');
   }
 });
+
+// 1. Chọn tất cả các button có class 'scrollBtn'
+const buttons = document.querySelectorAll('.scrollForm');
+
+// 2. Lặp qua từng button để gán sự kiện click
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    
+    // Lấy selector từ thuộc tính data-target (ví dụ: "#section1")
+    const targetSelector = button.getAttribute('data-target');
+    const target = document.querySelector(targetSelector);
+    
+    if (target) {
+      // Tính toán vị trí giống như cũ
+      const targetPosition = target.getBoundingClientRect().top;
+      const startPosition = window.scrollY || window.pageYOffset;
+      const offset = 230; // Khoảng cách giảm đi (ví dụ: chiều cao của Header)
+      const targetY = targetPosition + startPosition - offset;
+
+      // Cuộn mượt mà đến vị trí đã tính
+      window.scrollTo({
+        top: targetY,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+
+// $("#modal-sucess").fancybox().trigger('click');
