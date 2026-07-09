@@ -44,3 +44,14 @@ $('.section-5 .owl-carousel').owlCarousel({
 })
 
 new WOW().init();
+
+const header = document.querySelector('.main-menu');
+
+window.addEventListener('scroll', () => {
+  // Check how far the user has scrolled vertically
+  if (window.scrollY > 130) {
+    header.classList.add('active');
+  } else {
+    header.classList.remove('active');
+  }
+});
