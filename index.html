@@ -413,37 +413,45 @@
                 </div>
                 
             </div>
-            <form action="">
+            <form action="" id="dfcForm" novalidate>
                 <div class="md-col">
-                    <label for="">Họ và tên:</label>
-                    <input type="text">
-                    <!-- <p class="error">Vui lòng nhập họ và tên</p> -->
+                    <label for="dfc-name">Họ và tên:</label>
+                    <input type="text" id="dfc-name" name="name">
+                    <p class="error" data-for="name" style="display:none">Vui lòng nhập họ và tên</p>
                 </div>
                 <div class="md-col">
-                    <label for="">Số điện thoại:</label>
-                    <input type="phone">
-                    <!-- <p class="error">Vui lòng nhập số điện thoại</p> -->
+                    <label for="dfc-phone">Số điện thoại:</label>
+                    <input type="tel" id="dfc-phone" name="phone" inputmode="tel">
+                    <p class="error" data-for="phone" style="display:none">Số điện thoại không hợp lệ (10 số, VD 0901234567)</p>
                 </div>
                 <div class="md-col">
-                    <label for="">Email:</label>
-                    <input type="email">
-                    <!-- <p class="error">Vui lòng nhập email</p> -->
+                    <label for="dfc-email">Email:</label>
+                    <input type="email" id="dfc-email" name="email">
+                    <p class="error" data-for="email" style="display:none">Email không hợp lệ</p>
                 </div>
                 <div class="md-col">
-                    <label for="">Đơn vị/ Trường học công tác:</label>
-                    <input type="text">
-                    <!-- <p class="error">Vui lòng nhập đơn vị/ trường học</p> -->
+                    <label for="dfc-unit">Đơn vị/ Trường học công tác:</label>
+                    <input type="text" id="dfc-unit" name="unit">
+                    <p class="error" data-for="unit" style="display:none">Vui lòng nhập đơn vị/ trường học</p>
                 </div>
                 <div class="md-col">
-                    <label for="">Câu hỏi gửi đến DFC Việt Nam:</label>
-                    <input type="text">
-                    <!-- <p class="error">Vui lòng nhập câu hỏi</p> -->
+                    <label for="dfc-question">Câu hỏi gửi đến DFC Việt Nam:</label>
+                    <input type="text" id="dfc-question" name="question">
                 </div>
-                <input type="button" data-fancybox="" data-src="#modal-sucess" href="javascript:;">
+                <!-- Honeypot chống bot: người thật để trống -->
+                <input type="text" name="website" id="dfc-website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;">
+                <input type="button" id="dfcSubmit" href="javascript:;">
             </form>
         </div>
         <div class="md-tk" id="modal-sucess">
             <p><img src="./images/done-icon.png" alt="">Cám ơn bạn đã đăng ký thông tin, chúng tôi sẽ liên hệ lại với bạn!</p>
+        </div>
+        <!-- Overlay loading khi đang gửi form -->
+        <div id="dfcLoading" class="dfc-loading">
+            <div class="dfc-loading-box">
+                <div class="dfc-spinner"></div>
+                <span>Đang gửi...</span>
+            </div>
         </div>
         <div class="container">
             <div class="title-footer wow fadeInUp" data-wow-delay="0.5s">

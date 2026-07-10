@@ -798,3 +798,24 @@ img{
      height: 40%;
    }
 }
+/* ===== Overlay loading khi gửi form DFC ===== */
+.dfc-loading{
+  display:none;
+  position:fixed; inset:0; z-index:99999;
+  background:rgba(0,0,0,.45);
+  align-items:center; justify-content:center;
+}
+.dfc-loading.show{ display:flex; }
+.dfc-loading-box{
+  background:#fff; border-radius:14px;
+  padding:26px 34px; text-align:center;
+  box-shadow:0 10px 40px rgba(0,0,0,.25);
+  font-family:"Playpen Sans",cursive; color:#333; font-size:18px;
+}
+.dfc-spinner{
+  width:44px; height:44px; margin:0 auto 14px;
+  border:5px solid #f7d0d0; border-top-color:#e6005c;
+  border-radius:50%;
+  animation:dfcspin .8s linear infinite;
+}
+@keyframes dfcspin{ to{ transform:rotate(360deg); } }

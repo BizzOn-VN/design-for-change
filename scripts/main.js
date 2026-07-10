@@ -84,3 +84,90 @@ buttons.forEach(button => {
 });
 
 // $("#modal-sucess").fancybox().trigger('click');
+
+
+/* =========================================================
+   DFC — Gửi form đăng ký về Google Sheet (qua Apps Script)
+   ========================================================= */
+(function () {
+  // ====== CẤU HÌNH ======
+  // Dán URL Web App của Apps Script vào đây sau khi deploy:
+  var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyHWWugvT0DUxh1L5-1sK_cMpx3s3IxCKi6AvZiy84SYqx4tun20DYsgiUzV3sZ2_3KLw/exec';
+  var TOKEN = 'dfc-cd79eacaf9a25204eab4cd09'; // trùng với TOKEN trong dfc-apps-script.gs
+  // ======================
+
+  var form = document.getElementById('dfcForm');
+  if (!form) return;
+  var btn = document.getElementById('dfcSubmit');
+
+  // Viết hoa chữ cái đầu mỗi từ: "nguyễn thị hoa" -> "Nguyễn Thị Hoa"
+  function titleCase(s) {
+    return s.trim().replace(/\s+/g, ' ')
+      .split(' ')
+      .map(function (w) { return w.charAt(0).toUpperCase() + w.slice(1); })
+      .join(' ');
+  }
+  // Làm sạch + quy số ĐT VN về 0xxxxxxxxx
+  function normalizePhone(p) {
+    var s = String(p).replace(/[^\d+]/g, '');
+    if (s.indexOf('+84') === 0) s = '0' + s.slice(3);
+    else if (s.indexOf('84') === 0 && s.length === 11) s = '0' + s.slice(2);
+    return s;
+  }
+  function isValidPhone(p) { return /^0[35789]\d{8}$/.test(p) || /^0[2]\d{8,9}$/.test(p); }
+  function isValidEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+
+  function showErr(field, on) {
+    var el = form.querySelector('.error[data-for="' + field + '"]');
+    if (el) el.style.display = on ? 'block' : 'none';
+  }
+  function val(id) { return (document.getElementById(id).value || '').trim(); }
+  function showLoading(on) {
+    var el = document.getElementById('dfcLoading');
+    if (el) el.classList.toggle('show', on);
+  }
+
+  btn.addEventListener('click', function () {
+    // 1. Đọc + tự làm sạch
+    var name = titleCase(val('dfc-name'));
+    var phone = normalizePhone(val('dfc-phone'));
+    var email = val('dfc-email');
+    var unit = val('dfc-unit');
+    var question = val('dfc-question');
+    document.getElementById('dfc-name').value = name;   // hiển thị lại bản đã format
+    document.getElementById('dfc-phone').value = phone;
+
+    // 2. Validate
+    var ok = true;
+    if (!name) { showErr('name', true); ok = false; } else showErr('name', false);
+    if (!isValidPhone(phone)) { showErr('phone', true); ok = false; } else showErr('phone', false);
+    if (!isValidEmail(email)) { showErr('email', true); ok = false; } else showErr('email', false);
+    if (!unit) { showErr('unit', true); ok = false; } else showErr('unit', false);
+    if (!ok) return;
+
+    // 3. Gửi (KHÔNG set Content-Type json -> tránh CORS preflight)
+    btn.disabled = true;
+    showLoading(true);   // hiện overlay "Đang gửi..."
+    var payload = {
+      token: TOKEN, name: name, phone: phone, email: email,
+      unit: unit, question: question, website: val('dfc-website')
+    };
+    fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(payload) })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        showLoading(false);   // ẩn overlay trước khi hiện kết quả
+        if (data.result === 'ok') {
+          form.reset();
+          if (window.jQuery && jQuery.fancybox) {
+            jQuery.fancybox.open({ src: '#modal-sucess', type: 'inline' });
+          } else {
+            alert('Cảm ơn bạn đã đăng ký thông tin!');
+          }
+        } else {
+          alert('Gửi thất bại: ' + (data.message || 'Vui lòng thử lại'));
+        }
+      })
+      .catch(function (err) { showLoading(false); alert('Lỗi kết nối, vui lòng thử lại. (' + err.message + ')'); })
+      .finally(function () { btn.disabled = false; });
+  });
+})();
