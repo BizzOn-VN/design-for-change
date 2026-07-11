@@ -126,6 +126,13 @@ buttons.forEach(button => {
     var el = document.getElementById('dfcLoading');
     if (el) el.classList.toggle('show', on);
   }
+  function openModal(sel, fallbackMsg) {
+    if (window.jQuery && jQuery.fancybox) {
+      jQuery.fancybox.open({ src: sel, type: 'inline' });
+    } else {
+      alert(fallbackMsg);
+    }
+  }
 
   btn.addEventListener('click', function () {
     // 1. Đọc + tự làm sạch
@@ -158,16 +165,12 @@ buttons.forEach(button => {
         showLoading(false);   // ẩn overlay trước khi hiện kết quả
         if (data.result === 'ok') {
           form.reset();
-          if (window.jQuery && jQuery.fancybox) {
-            jQuery.fancybox.open({ src: '#modal-sucess', type: 'inline' });
-          } else {
-            alert('Cảm ơn bạn đã đăng ký thông tin!');
-          }
+          openModal('#modal-sucess', 'Cảm ơn bạn đã đăng ký thông tin!');
         } else {
-          alert('Gửi thất bại: ' + (data.message || 'Vui lòng thử lại'));
+          openModal('#modal-error', 'Có lỗi xảy ra, vui lòng liên hệ DFC qua Facebook hoặc email dfc@tomato.edu.vn');
         }
       })
-      .catch(function (err) { showLoading(false); alert('Lỗi kết nối, vui lòng thử lại. (' + err.message + ')'); })
+      .catch(function () { showLoading(false); openModal('#modal-error', 'Có lỗi xảy ra, vui lòng liên hệ DFC qua Facebook hoặc email dfc@tomato.edu.vn'); })
       .finally(function () { btn.disabled = false; });
   });
 })();

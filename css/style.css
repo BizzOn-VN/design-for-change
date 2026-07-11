@@ -795,6 +795,18 @@ img{
   text-decoration: none;
 }
 .md-tk .tk-contact a:hover{ text-decoration: underline; }
+.md-tk .tk-icon-err{
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 16px auto;
+  border-radius: 50%;
+  background: #e53935;
+  color: #fff;
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 72px;
+  text-align: center;
+}
 @media screen and (max-width: 767px){
   .md-form form{
     width: 90%;
