@@ -92,7 +92,7 @@ buttons.forEach(button => {
 (function () {
   // ====== CẤU HÌNH ======
   // Dán URL Web App của Apps Script vào đây sau khi deploy:
-  var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyHWWugvT0DUxh1L5-1sK_cMpx3s3IxCKi6AvZiy84SYqx4tun20DYsgiUzV3sZ2_3KLw/exec';
+  var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwXmjoXnExndyvbqa3U5fqKOHFRRAC_uPZGTqMDWAG6CnArUntKQjJUSzxr82kwdGVe/exec';
   var TOKEN = 'dfc-cd79eacaf9a25204eab4cd09'; // trùng với TOKEN trong dfc-apps-script.gs
   // ======================
 
