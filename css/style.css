@@ -759,27 +759,42 @@ img{
 }
 
 .md-tk{
-    width: 50%;
-  height: 50%;
-  background: #E7EDF9;
+  width: 90%;
+  max-width: 440px;
+  background: #fff;
+  border-radius: 18px;
+  padding: 34px 28px;
+  text-align: center;
   display: none;
+  box-sizing: border-box;
 }
 .md-tk img{
-  width: 20%;
-  display: table;
-  margin: 0 auto 15px auto;
+  width: 72px;
+  height: auto;
+  display: block;
+  margin: 0 auto 16px auto;
 }
-.md-tk p{
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    margin-bottom: 0px;
-    font-size: calc(10px + 1vw);
-    text-align: center;
-    width: 75%;
-    color: #333;
+.md-tk .tk-title{
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.45;
+  margin: 0 0 16px 0;
 }
+.md-tk .tk-contact{
+  font-size: 14px;
+  color: #555;
+  line-height: 1.65;
+  margin: 0;
+  padding-top: 14px;
+  border-top: 1px solid #eee;
+}
+.md-tk .tk-contact a{
+  color: #e6005c;
+  font-weight: 600;
+  text-decoration: none;
+}
+.md-tk .tk-contact a:hover{ text-decoration: underline; }
 @media screen and (max-width: 767px){
   .md-form form{
     width: 90%;
@@ -795,7 +810,6 @@ img{
   }
   .md-tk{
      width: 90%;
-     height: 40%;
    }
 }
 /* ===== Overlay loading khi gửi form DFC ===== */
